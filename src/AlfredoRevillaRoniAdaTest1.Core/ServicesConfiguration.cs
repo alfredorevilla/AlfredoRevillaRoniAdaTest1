@@ -35,7 +35,8 @@ namespace AlfredoRevillaRoniAdaTest1
                 .AddSingleton<IMapper>(sp => new Mapper(CreateMapperConfiguration()))
                 .AddMappingExpression(c =>
                 {
-                    c.CreateMap<JobServiceModel, JobRepositoryModel>().ReverseMap();
+                    c.CreateMap<JobRepositoryModel, JobServiceModel>();
+                    c.CreateMap<RoomTypeRepositoryModel, RoomTypeServiceModel>();
                 })
                 ;
 

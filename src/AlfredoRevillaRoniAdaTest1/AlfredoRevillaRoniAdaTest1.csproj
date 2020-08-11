@@ -7,6 +7,4 @@
   <ItemGroup>
     <ProjectReference Include="..\AlfredoRevillaRoniAdaTest1.Ef\AlfredoRevillaRoniAdaTest1.Ef.csproj" />
   </ItemGroup>
-
-
 </Project>

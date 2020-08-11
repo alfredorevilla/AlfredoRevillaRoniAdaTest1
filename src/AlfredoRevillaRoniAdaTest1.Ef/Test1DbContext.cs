@@ -11,12 +11,19 @@ namespace AlfredoRevillaRoniAdaTest1.Ef
 
         public DbSet<JobRepositoryModel> Jobs { get; set; }
 
+        public DbSet<RoomTypeRepositoryModel> RoomTypes { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .Entity<JobRepositoryModel>()
                 .ToTable("RX_Job")
                 ;
+
+            modelBuilder
+             .Entity<RoomTypeRepositoryModel>()
+             .ToTable("RX_RoomType")
+             ;
 
             base.OnModelCreating(modelBuilder);
         }

@@ -24,8 +24,10 @@ namespace AlfredoRevillaRoniAdaTest1
         {
             services.AddMappingExpression(c =>
             {
-                c.CreateMap<GetJobModel, GetJobServiceModel>().ReverseMap();
-                c.CreateMap<JobModel, JobServiceModel>().ReverseMap();
+                c.CreateMap<GetJobModel, GetJobServiceModel>();
+                c.CreateMap<JobServiceModel, JobModel>()
+                .ForMember(m => m.RoomTypeName, o => o.MapFrom(s => s.RoomType.Name));
+                ;
             });
 
             services.AddCoreServices();

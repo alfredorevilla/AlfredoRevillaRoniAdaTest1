@@ -19,11 +19,15 @@ namespace AlfredoRevillaRoniAdaTest1.Services
 
         public async IAsyncEnumerable<JobServiceModel> GetAsync(GetJobServiceModel getJobServiceModel)
         {
-            var query = jobRepository.Query().ToList();
+            var query = jobRepository
+                .Query()
+                .ToList();
+
             foreach (var item in query)
             {
                 yield return mapper.Map<JobServiceModel>(item);
             }
+
             await Task.CompletedTask;
         }
     }

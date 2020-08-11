@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using AlfredoRevillaRoniAdaTest1.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace AlfredoRevillaRoniAdaTest1.Ef
 {
@@ -14,7 +15,7 @@ namespace AlfredoRevillaRoniAdaTest1.Ef
 
         public IQueryable<JobRepositoryModel> Query()
         {
-            return dbContext.Jobs;
+            return dbContext.Jobs.Include(m => m.RoomType);
         }
     }
 }

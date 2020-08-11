@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AlfredoRevillaRoniAdaTest1.Repositories
 {
@@ -15,5 +16,8 @@ namespace AlfredoRevillaRoniAdaTest1.Repositories
         public int Floor { get; set; }
 
         public Guid RoomTypeId { get; set; }
+
+        [ForeignKey(nameof(RoomTypeId))]
+        public RoomTypeRepositoryModel RoomType { get; set; }
     }
 }

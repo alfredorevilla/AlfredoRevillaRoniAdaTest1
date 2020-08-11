@@ -13,5 +13,6 @@ namespace AlfredoRevillaRoniAdaTest1.Services
         public int Floor { get; set; }
 
         public Guid RoomTypeId { get; set; }
+        public RoomTypeServiceModel RoomType { get; set; }
     }
 }
