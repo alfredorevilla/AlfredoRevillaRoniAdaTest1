@@ -12,6 +12,14 @@ namespace AlfredoRevillaRoniAdaTest1.Controllers
     [ApiController]
     public class JobController : ControllerBase
     {
+        public readonly static Action<IMapperConfigurationExpression> MappingExpression = c =>
+        {
+            c.CreateMap<JobServiceModel, JobModel>()
+            .ForMember(d => d.RoomTypeName, o => o.MapFrom(s => s.RoomType.Name));
+            c.CreateMap<JobSummaryItemServiceModel, JobSummaryItemModel>()
+            .ForMember(d => d.RoomTypeName, o => o.MapFrom(s => s.RoomType.Name));
+        };
+
         private readonly IJobService jobService;
         private readonly IMapper mapper;
 

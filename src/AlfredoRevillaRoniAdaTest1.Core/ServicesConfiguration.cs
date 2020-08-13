@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using AlfredoRevillaRoniAdaTest1.Repositories;
 using AlfredoRevillaRoniAdaTest1.Services;
 using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,11 +32,7 @@ namespace AlfredoRevillaRoniAdaTest1
             services
                 .AddScoped<IJobService, JobService>()
                 .AddSingleton<IMapper>(sp => new Mapper(CreateMapperConfiguration()))
-                .AddMappingExpression(c =>
-                {
-                    c.CreateMap<JobRepositoryModel, JobServiceModel>();
-                    c.CreateMap<RoomTypeRepositoryModel, RoomTypeServiceModel>();
-                })
+                .AddMappingExpression(JobService.MappingExpression)
                 ;
 
             return services;

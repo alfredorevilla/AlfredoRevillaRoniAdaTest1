@@ -1,6 +1,5 @@
+using AlfredoRevillaRoniAdaTest1.Controllers;
 using AlfredoRevillaRoniAdaTest1.Ef;
-using AlfredoRevillaRoniAdaTest1.Models;
-using AlfredoRevillaRoniAdaTest1.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -23,13 +22,7 @@ namespace AlfredoRevillaRoniAdaTest1
         {
             services.AddApplicationInsightsTelemetry();
 
-            services.AddMappingExpression(c =>
-            {
-                c.CreateMap<JobServiceModel, JobModel>()
-                .ForMember(d => d.RoomTypeName, o => o.MapFrom(s => s.RoomType.Name));
-                c.CreateMap<JobSummaryItemServiceModel, JobSummaryItemModel>()
-                .ForMember(d => d.RoomTypeName, o => o.MapFrom(s => s.RoomType.Name));
-            });
+            services.AddMappingExpression(JobController.MappingExpression);
 
             services.AddCoreServices();
             services.AddEfServices(b => b.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

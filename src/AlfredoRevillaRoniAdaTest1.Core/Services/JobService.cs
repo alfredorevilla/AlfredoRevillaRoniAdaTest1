@@ -10,6 +10,12 @@ namespace AlfredoRevillaRoniAdaTest1.Services
 {
     public class JobService : IJobService
     {
+        public static readonly Action<IMapperConfigurationExpression> MappingExpression = c =>
+        {
+            c.CreateMap<JobRepositoryModel, JobServiceModel>();
+            c.CreateMap<RoomTypeRepositoryModel, RoomTypeServiceModel>();
+        };
+
         private readonly ILogger<JobService> logger;
         private readonly IJobRepository jobRepository;
         private readonly IMapper mapper;
