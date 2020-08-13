@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using AlfredoRevillaRoniAdaTest1.Repositories;
 using AutoMapper;
-using Castle.Core.Logging;
 using FakeItEasy;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

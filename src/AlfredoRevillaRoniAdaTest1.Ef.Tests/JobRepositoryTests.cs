@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AlfredoRevillaRoniAdaTest1.Repositories;
-using Castle.Core.Logging;
 using FakeItEasy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;

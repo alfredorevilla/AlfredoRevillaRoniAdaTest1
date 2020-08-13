@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using AlfredoRevillaRoniAdaTest1.Repositories;
@@ -28,7 +27,6 @@ namespace AlfredoRevillaRoniAdaTest1.Services
         public async IAsyncEnumerable<JobServiceModel> GetAsync()
         {
             logger.LogInformation("{0} has been called.", nameof(GetAsync));
-
 
             var list = ListInternal();
 
