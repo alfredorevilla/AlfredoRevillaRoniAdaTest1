@@ -16,8 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AlfredoRevillaRoniAdaTest1.Core\AlfredoRevillaRoniAdaTest1.Core.csproj" />
-    <ProjectReference Include="..\AlfredoRevillaRoniAdaTest1.Ef\AlfredoRevillaRoniAdaTest1.Ef.csproj" />
+    <ProjectReference Include="..\..\src\AlfredoRevillaRoniAdaTest1.Core\AlfredoRevillaRoniAdaTest1.Core.csproj" />
+    <ProjectReference Include="..\..\src\AlfredoRevillaRoniAdaTest1.Ef\AlfredoRevillaRoniAdaTest1.Ef.csproj" />
   </ItemGroup>
 
 </Project>

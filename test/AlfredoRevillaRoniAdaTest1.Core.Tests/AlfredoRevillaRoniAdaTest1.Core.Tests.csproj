@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AlfredoRevillaRoniAdaTest1.Core\AlfredoRevillaRoniAdaTest1.Core.csproj" />
+    <ProjectReference Include="..\..\src\AlfredoRevillaRoniAdaTest1.Core\AlfredoRevillaRoniAdaTest1.Core.csproj" />
   </ItemGroup>
 
 </Project>
