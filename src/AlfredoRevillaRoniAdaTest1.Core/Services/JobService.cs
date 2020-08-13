@@ -1,25 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using AlfredoRevillaRoniAdaTest1.Repositories;
 using AutoMapper;
+using Microsoft.Extensions.Logging;
 
 namespace AlfredoRevillaRoniAdaTest1.Services
 {
     public class JobService : IJobService
     {
+        private readonly ILogger<JobService> logger;
         private readonly IJobRepository jobRepository;
         private readonly IMapper mapper;
 
-        public JobService(IJobRepository jobRepository, IMapper mapper)
+        public JobService(
+            ILogger<JobService> logger,
+            IJobRepository jobRepository,
+            IMapper mapper)
         {
+            this.logger = logger;
             this.jobRepository = jobRepository;
             this.mapper = mapper;
         }
 
-        public async IAsyncEnumerable<JobServiceModel> GetAsync(GetJobServiceModel getJobServiceModel)
+        public async IAsyncEnumerable<JobServiceModel> GetAsync()
         {
+            logger.LogInformation("{0} has been called.", nameof(GetAsync));
+
+
             var list = ListInternal();
 
             foreach (var item in list)
@@ -39,6 +49,8 @@ namespace AlfredoRevillaRoniAdaTest1.Services
 
         public async IAsyncEnumerable<JobSummaryItemServiceModel> GetSummaryAsync()
         {
+            logger.LogInformation("{0} has been called.", nameof(GetSummaryAsync));
+
             var collection = ListInternal()
                 .GroupBy(
                     o => o.RoomType,
@@ -66,8 +78,12 @@ namespace AlfredoRevillaRoniAdaTest1.Services
 
         public async Task CompleteAsync(Guid id)
         {
+            logger.LogInformation("{0} has been called.", nameof(CompleteAsync));
+            logger.LogDebug("Id is {0}.", id);
+
             if (id == Guid.Empty)
             {
+                logger.LogInformation("Invalid id. Rising error.");
                 throw new ArgumentException(nameof(id));
             }
 
@@ -75,11 +91,13 @@ namespace AlfredoRevillaRoniAdaTest1.Services
 
             if (model.Status == "In Progress" || model.Status == "Delayed")
             {
+                logger.LogInformation("Job can be completed. Setting status to Complete");
                 model.Status = "Complete";
                 await jobRepository.UpdateAsync(model);
             }
             else
             {
+                logger.LogInformation("Job cannot be completed. Rising error.");
                 throw new InvalidOperationException("Cannot complete due current job status.");
             }
         }

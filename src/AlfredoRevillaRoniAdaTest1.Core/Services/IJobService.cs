@@ -6,7 +6,7 @@ namespace AlfredoRevillaRoniAdaTest1.Services
 {
     public interface IJobService
     {
-        IAsyncEnumerable<JobServiceModel> GetAsync(GetJobServiceModel getJobServiceModel);
+        IAsyncEnumerable<JobServiceModel> GetAsync();
 
         IAsyncEnumerable<JobSummaryItemServiceModel> GetSummaryAsync();
 

@@ -22,9 +22,9 @@ namespace AlfredoRevillaRoniAdaTest1.Controllers
         }
 
         [HttpGet]
-        public async IAsyncEnumerable<JobModel> Get([FromQuery] GetJobModel model = null)
+        public async IAsyncEnumerable<JobModel> Get()
         {
-            await foreach (var item in jobService.GetAsync(mapper.Map<GetJobServiceModel>(model)))
+            await foreach (var item in jobService.GetAsync())
             {
                 yield return mapper.Map<JobModel>(item);
             }

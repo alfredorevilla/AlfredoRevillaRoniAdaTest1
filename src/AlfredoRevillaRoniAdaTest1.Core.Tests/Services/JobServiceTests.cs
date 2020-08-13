@@ -2,7 +2,9 @@
 using System.Threading.Tasks;
 using AlfredoRevillaRoniAdaTest1.Repositories;
 using AutoMapper;
+using Castle.Core.Logging;
 using FakeItEasy;
+using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AlfredoRevillaRoniAdaTest1.Services.Tests
@@ -15,15 +17,19 @@ namespace AlfredoRevillaRoniAdaTest1.Services.Tests
 
         public JobServiceTests()
         {
-            jobRepository = A.Fake<Repositories.IJobRepository>();
+            jobRepository = A.Fake<IJobRepository>();
 
-            jobService = new JobService(jobRepository, A.Fake<IMapper>());
+            jobService = new JobService(
+                A.Fake<ILogger<JobService>>(),
+                jobRepository,
+                A.Fake<IMapper>()
+                );
         }
 
         [TestMethod()]
         public async Task GetAsyncTest()
         {
-            var result = jobService.GetAsync(new GetJobServiceModel());
+            var result = jobService.GetAsync();
 
             await foreach (var item in result)
             {

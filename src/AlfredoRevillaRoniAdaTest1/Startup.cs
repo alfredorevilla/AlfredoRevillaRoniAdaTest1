@@ -22,9 +22,10 @@ namespace AlfredoRevillaRoniAdaTest1
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddApplicationInsightsTelemetry();
+
             services.AddMappingExpression(c =>
             {
-                c.CreateMap<GetJobModel, GetJobServiceModel>();
                 c.CreateMap<JobServiceModel, JobModel>()
                 .ForMember(d => d.RoomTypeName, o => o.MapFrom(s => s.RoomType.Name));
                 c.CreateMap<JobSummaryItemServiceModel, JobSummaryItemModel>()

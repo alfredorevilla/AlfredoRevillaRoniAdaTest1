@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AlfredoRevillaRoniAdaTest1.Repositories;
+using Castle.Core.Logging;
+using FakeItEasy;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AlfredoRevillaRoniAdaTest1.Ef.Tests
@@ -19,7 +22,10 @@ namespace AlfredoRevillaRoniAdaTest1.Ef.Tests
                     .UseInMemoryDatabase("db").Options
                     );
 
-            jobRepository = new JobRepository(dbContext);
+            jobRepository = new JobRepository(
+                A.Fake<ILogger<JobRepository>>(),
+                dbContext
+                );
         }
 
         [TestMethod()]
