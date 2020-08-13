@@ -26,8 +26,9 @@ namespace AlfredoRevillaRoniAdaTest1
             {
                 c.CreateMap<GetJobModel, GetJobServiceModel>();
                 c.CreateMap<JobServiceModel, JobModel>()
-                .ForMember(m => m.RoomTypeName, o => o.MapFrom(s => s.RoomType.Name));
-                ;
+                .ForMember(d => d.RoomTypeName, o => o.MapFrom(s => s.RoomType.Name));
+                c.CreateMap<JobSummaryItemServiceModel, JobSummaryItemModel>()
+                .ForMember(d => d.RoomTypeName, o => o.MapFrom(s => s.RoomType.Name));
             });
 
             services.AddCoreServices();

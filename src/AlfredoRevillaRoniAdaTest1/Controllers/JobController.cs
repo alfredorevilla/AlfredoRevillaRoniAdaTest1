@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 using AlfredoRevillaRoniAdaTest1.Models;
 using AlfredoRevillaRoniAdaTest1.Services;
 using AutoMapper;
@@ -21,12 +20,20 @@ namespace AlfredoRevillaRoniAdaTest1.Controllers
         }
 
         [HttpGet]
-        [Produces("application/json")]
         public async IAsyncEnumerable<JobModel> Get([FromQuery] GetJobModel model)
         {
             await foreach (var item in jobService.GetAsync(mapper.Map<GetJobServiceModel>(model)))
             {
                 yield return mapper.Map<JobModel>(item);
+            }
+        }
+
+        [HttpGet("summary")]
+        public async IAsyncEnumerable<dynamic> GetSummary()
+        {
+            await foreach (var item in jobService.GetSummaryAsync())
+            {
+                yield return mapper.Map<JobSummaryItemModel>(item);
             }
         }
     }

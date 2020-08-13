@@ -19,13 +19,45 @@ namespace AlfredoRevillaRoniAdaTest1.Services
 
         public async IAsyncEnumerable<JobServiceModel> GetAsync(GetJobServiceModel getJobServiceModel)
         {
-            var query = jobRepository
-                .Query()
-                .ToList();
+            var list = ListInternal();
 
-            foreach (var item in query)
+            foreach (var item in list)
             {
                 yield return mapper.Map<JobServiceModel>(item);
+            }
+
+            await Task.CompletedTask;
+        }
+
+        private IEnumerable<JobRepositoryModel> ListInternal()
+        {
+            return jobRepository
+                .Query()
+                .ToList();
+        }
+
+        public async IAsyncEnumerable<JobSummaryItemServiceModel> GetSummaryAsync()
+        {
+            var collection = ListInternal()
+                .GroupBy(
+                    o => o.RoomType,
+                    (k, c) => new
+                    {
+                        Key = k,
+                        Items = c.OrderBy(co => co.Status).GroupBy(co => co.Status)
+                    });
+
+            foreach (var item1 in collection)
+            {
+                foreach (var item2 in item1.Items)
+                {
+                    yield return new JobSummaryItemServiceModel
+                    {
+                        RoomType = mapper.Map<RoomTypeServiceModel>(item1.Key),
+                        Count = item2.Count(),
+                        Status = item2.Key
+                    };
+                }
             }
 
             await Task.CompletedTask;
