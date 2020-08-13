@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using AlfredoRevillaRoniAdaTest1.Models;
 using AlfredoRevillaRoniAdaTest1.Services;
 using AutoMapper;
@@ -26,6 +28,13 @@ namespace AlfredoRevillaRoniAdaTest1.Controllers
             {
                 yield return mapper.Map<JobModel>(item);
             }
+        }
+
+        [HttpPost("{id}/complete")]
+        public async Task<IActionResult> Complete([FromRoute] Guid id)
+        {
+            await jobService.CompleteAsync(id);
+            return Ok();
         }
 
         [HttpGet("summary")]

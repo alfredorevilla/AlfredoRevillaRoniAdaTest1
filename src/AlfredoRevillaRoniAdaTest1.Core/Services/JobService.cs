@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AlfredoRevillaRoniAdaTest1.Repositories;
@@ -61,6 +62,17 @@ namespace AlfredoRevillaRoniAdaTest1.Services
             }
 
             await Task.CompletedTask;
+        }
+
+        public async Task CompleteAsync(Guid id)
+        {
+            var model = await jobRepository.FindAsync(id);
+            if (model.Status == "In Progress" || model.Status == "Delayed")
+            {
+                model.Status = "Complete";
+                await jobRepository.UpdateAsync(model);
+            }
+            throw new InvalidOperationException("Cannot complete due current job status.");
         }
     }
 }
