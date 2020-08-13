@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AlfredoRevillaRoniAdaTest1.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/jobs")]
     [ApiController]
     public class JobController : ControllerBase
     {

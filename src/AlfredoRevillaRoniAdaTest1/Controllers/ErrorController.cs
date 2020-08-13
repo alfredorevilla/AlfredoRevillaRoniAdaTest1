@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -27,21 +28,17 @@ namespace AlfredoRevillaRoniAdaTest1.Controllers
             {
                 statusCode = 404;
             }
-            else if (error is ArgumentException || error is InvalidOperationException)
+            else if (
+                error is ArgumentException ||
+                error is ValidationException ||
+                error is InvalidOperationException
+                )
             {
                 statusCode = 400;
             }
 
-            logger.LogTrace($"An error is being handled by {nameof(ErrorController)}.");
-            logger.LogTrace("Status code is {0}.", statusCode);
-            if (statusCode == 500)
-            {
-                logger.LogError(error.Message);
-            }
-            else
-            {
-                logger.LogWarning(error.Message);
-            }
+            logger.LogInformation($"An error is being handled by {nameof(ErrorController)}.");
+            logger.LogInformation("Status code has been set to {0}.", statusCode);
 
             return Problem(
                 title: error.Message,

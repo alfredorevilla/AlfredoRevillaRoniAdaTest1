@@ -11,9 +11,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlfredoRevillaRoniAdaTest1.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlfredoRevillaRoniAdaTest1.Tests", "src\AlfredoRevillaRoniAdaTest1.Tests\AlfredoRevillaRoniAdaTest1.Tests.csproj", "{8B2E21F8-286F-4747-B772-DB6E5AF63A15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlfredoRevillaRoniAdaTest1.Core.Tests", "src\AlfredoRevillaRoniAdaTest1.Core.Tests\AlfredoRevillaRoniAdaTest1.Core.Tests.csproj", "{145DBC57-5B32-45B9-9FC5-21F893229D85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlfredoRevillaRoniAdaTest1.Core.Tests", "src\AlfredoRevillaRoniAdaTest1.Core.Tests\AlfredoRevillaRoniAdaTest1.Core.Tests.csproj", "{145DBC57-5B32-45B9-9FC5-21F893229D85}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlfredoRevillaRoniAdaTest1.Ef.Tests", "src\AlfredoRevillaRoniAdaTest1.Ef.Tests\AlfredoRevillaRoniAdaTest1.Ef.Tests.csproj", "{6C68E685-10B0-4C54-9983-97042E4DBD29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlfredoRevillaRoniAdaTest1.Ef.Tests", "src\AlfredoRevillaRoniAdaTest1.Ef.Tests\AlfredoRevillaRoniAdaTest1.Ef.Tests.csproj", "{6C68E685-10B0-4C54-9983-97042E4DBD29}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{44629583-984B-4BF2-8DA4-823D815C1E90}"
+	ProjectSection(SolutionItems) = preProject
+		DemoDBScriptQuery.sql = DemoDBScriptQuery.sql
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
