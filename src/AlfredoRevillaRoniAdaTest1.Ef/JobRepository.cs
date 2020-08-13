@@ -17,7 +17,13 @@ namespace AlfredoRevillaRoniAdaTest1.Ef
 
         public async Task<JobRepositoryModel> FindAsync(Guid id)
         {
-            return await dbContext.FindAsync<JobRepositoryModel>(id);
+            var result = await dbContext.FindAsync<JobRepositoryModel>(id);
+            if (result == null)
+            {
+                throw new ObjectNotFoundException("Job", id.ToString());
+            }
+
+            return result;
         }
 
         public IQueryable<JobRepositoryModel> Query()

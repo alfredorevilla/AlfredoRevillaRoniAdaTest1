@@ -22,7 +22,7 @@ namespace AlfredoRevillaRoniAdaTest1.Controllers
         }
 
         [HttpGet]
-        public async IAsyncEnumerable<JobModel> Get([FromQuery] GetJobModel model)
+        public async IAsyncEnumerable<JobModel> Get([FromQuery] GetJobModel model = null)
         {
             await foreach (var item in jobService.GetAsync(mapper.Map<GetJobServiceModel>(model)))
             {
@@ -38,7 +38,7 @@ namespace AlfredoRevillaRoniAdaTest1.Controllers
         }
 
         [HttpGet("summary")]
-        public async IAsyncEnumerable<dynamic> GetSummary()
+        public async IAsyncEnumerable<JobSummaryItemModel> GetSummary()
         {
             await foreach (var item in jobService.GetSummaryAsync())
             {

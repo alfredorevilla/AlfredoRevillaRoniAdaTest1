@@ -66,13 +66,22 @@ namespace AlfredoRevillaRoniAdaTest1.Services
 
         public async Task CompleteAsync(Guid id)
         {
+            if (id == Guid.Empty)
+            {
+                throw new ArgumentException(nameof(id));
+            }
+
             var model = await jobRepository.FindAsync(id);
+
             if (model.Status == "In Progress" || model.Status == "Delayed")
             {
                 model.Status = "Complete";
                 await jobRepository.UpdateAsync(model);
             }
-            throw new InvalidOperationException("Cannot complete due current job status.");
+            else
+            {
+                throw new InvalidOperationException("Cannot complete due current job status.");
+            }
         }
     }
 }

@@ -23,7 +23,6 @@ namespace AlfredoRevillaRoniAdaTest1.Controllers
                 detail: error.StackTrace
 #endif
                 );
-
         }
     }
 }
